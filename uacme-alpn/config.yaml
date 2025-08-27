@@ -1,0 +1,20 @@
+name: "uacme TLS-ALPN-01"
+description: "Let's Encrypt certificate with uacme TLS-ALPN-01"
+version: "1.8.0"
+slug: "uacme_alpn"
+init: false
+arch:
+  - aarch64
+startup: once
+boot: manual
+map:
+  - ssl:rw
+ports:
+  8000/tcp: 8000
+options:
+  certfile: "fullchain.pem"
+  keyfile: "privkey.pem"
+schema:
+  domain: str
+  certfile: str
+  keyfile: str
