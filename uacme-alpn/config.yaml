@@ -1,6 +1,6 @@
 name: "uacme TLS-ALPN-01"
 description: "Let's Encrypt certificate with uacme TLS-ALPN-01"
-version: "1.8.0"
+version: "1.8.1"
 slug: "uacme_alpn"
 init: false
 arch:
