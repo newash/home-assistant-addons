@@ -14,7 +14,7 @@ I guess not many people have this setup for their home network, that's why I hav
    - **domain**: Your domain name to obtain a certificate for.
    - **certfile**: Name of the file where the issued certificate will be saved (inside `/ssl/` where it's normally expected to be). You can keep the default `fullchain.pem` value.
    - **keyfile**: Name of the file where the private key will be saved. You can keep the default `privkey.pem` value.
-   - **network port**: The port of the Home Assistant server the TLS-ALPN-01 challenge responses should be received on. This is the port that has to be set on the reverse proxy separately, not your regular HTTPS port.
+   - **network port**: The port of the Home Assistant server the TLS-ALPN-01 challenge responses should be received on. This is the port that has to be set on the reverse proxy separately. It's not your regular HTTPS port.
 1. Since the add-on does not run in the background but shuts down after each certificate refresh, an automation has to be set with **Settings → Automations & scenes → Create automation**. After setting the trigger condition (e.g. once a week) choose the _"Home Assistant Supervisor: Restart add-on"_ action, select the _"uacme TLS-ALPN-01"_ from the dropdown and **Save**.
 1. To enable HTTPS for Home Assitant, the following lines have to be added to the main configuration file `configuration.yaml`, using the values from **certfile** and **keyfile** above:
    ```yaml
@@ -37,4 +37,5 @@ I'm using [sslh](https://github.com/yrutschle/sslh) proxy and this is how its `/
        ...
    );
    ```
-1. If you also have the webservice port (default 8123) forwarded on your router, now you can access it with HTTPS.
+1. Now you have everything set up for the certificate renewal, but you still don't have the certificate because the add-on hasn't been run yet. Go to the add-on page and press **Start**. You can check if everything went fine on the **Log** tab.
+1. Finally, if you also have the Home Assistant web port (default 8123) proxied or forwarded on your router, you can access it with HTTPS.
